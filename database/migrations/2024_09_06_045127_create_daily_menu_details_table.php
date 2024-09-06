@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('password_reset_tokens', function (Blueprint $table) {
-        //     $table->string('email')->primary();
-        //     $table->string('token');
-        //     $table->timestamp('created_at')->nullable();
-        // });
+        Schema::create('daily_menu_details', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('id_daily_menus');
+            $table->unsignedBigInteger('id_food_dishes');
+            $table->decimal('price', 18, 2);
+        });
     }
 
     /**
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('daily_menu_details');
     }
 };

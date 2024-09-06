@@ -11,9 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('attention_tables', function (Blueprint $table) {
+        Schema::create('daily_menu_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique();
+            $table->text('description')->nullable();
+            $table->string('created_by')->nullable();
+            $table->string('updated_by');
+            $table->string('deleted_by');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -22,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attention_tables');
+        Schema::dropIfExists('daily_menu_categories');
     }
 };
