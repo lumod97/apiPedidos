@@ -17,6 +17,16 @@ class CompaniesController extends Controller
         return response()->json($data);
     }
 
+    public function getCompaniesForSelect(Request $request){
+        $params = [
+
+        ];
+
+        $data = DB::select('select id, name from companies where deleted_at is null', $params);
+
+        return response()->json($data);
+    }
+
     public function insertCompany(Request $request){
 
         $params = [
@@ -25,6 +35,19 @@ class CompaniesController extends Controller
         ];
 
         $response = DB::statement("CALL insert_new_company(?, ?)", $params);
+
+        return response()->json($response);
+    }
+
+    public function editCompany(Request $request){
+
+        $params = [
+            $request->id,
+            $request->name,
+            $request->ruc
+        ];
+
+        $response = DB::statement("CALL edit_company(?, ?, ?)", $params);
 
         return response()->json($response);
     }

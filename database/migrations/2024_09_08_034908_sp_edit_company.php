@@ -12,26 +12,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $query = 'CREATE PROCEDURE insert_new_company(
+        $procedure = "CREATE PROCEDURE edit_company(
+            _id bigint unsigned,
             _name varchar(255),
             _ruc varchar(255)
         )
-        
-            BEGIN
-                INSERT INTO companies(
-                    name,
-                    ruc,
-                    created_at
-                )
-                VALUES
-                (
-                    _name,
-                    _ruc,
-                    NOW()
-                );
-            END;';
+        BEGIN
+            UPDATE
+                companies
+            SET
+                name = _name,
+                ruc = _ruc,
+                updated_at = NOW()
+            WHERE
+                id = _id;
 
-        DB::unprepared($query);
+        END;";
+
+        DB::unprepared($procedure);
     }
 
     /**
