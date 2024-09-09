@@ -17,9 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_branches');
             $table->date('day');
             $table->string('created_by')->nullable();
-            $table->string('updated_by');
-            $table->string('deleted_by');
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('id_daily_menu_categories')
                 ->references('id')

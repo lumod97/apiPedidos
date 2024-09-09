@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_table_categories');
             $table->string('details');
             $table->string('created_by')->nullable();
-            $table->string('updated_by');
-            $table->string('deleted_by');
+            $table->string('updated_by')->nullable();
+            $table->string('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('id_branches')
