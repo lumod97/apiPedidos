@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttentionTableController;
 use App\Http\Controllers\BranchesController;
 use App\Http\Controllers\CompaniesController;
 use App\Http\Controllers\DailyMenuCategoriesController;
@@ -35,7 +36,7 @@ Route::group(['prefix' => 'companies'], function () {
 
 Route::group(['prefix' => 'branches'], function () {
     Route::post('get-branches', [BranchesController::class,'getBranches']);
-    // Route::post('get-branches-for-select', [BranchesController::class,'getBranchesForSelect']);
+    Route::post('get-branches-for-select', [BranchesController::class,'getBranchesForSelect']);
     Route::post('insert-branch', [BranchesController::class,'insertBranch']);
     Route::post('edit-branch', [BranchesController::class,'editBranch']);
     Route::post('delete-branch', [BranchesController::class,'deleteBranch']);
@@ -43,6 +44,7 @@ Route::group(['prefix' => 'branches'], function () {
 
 Route::group(['prefix' => 'table-categories'], function () {
     Route::post('get-table-categories', [TableCategoriesController::class,'getTableCategories']);
+    Route::post('get-table-categories-for-select', [TableCategoriesController::class,'getTableCategoriesForSelect']);
     Route::post('insert-table-category', [TableCategoriesController::class,'insertTableCategory']);
     Route::post('edit-table-category', [TableCategoriesController::class,'editTableCategory']);
     Route::post('delete-table-category', [TableCategoriesController::class,'deleteTableCategory']);
@@ -67,4 +69,11 @@ Route::group(['prefix' => 'food-dish-categories'], function () {
     Route::post('insert-food-dish-category', [FoodDishCategoriesController::class,'insertFoodDishCategory']);
     Route::post('edit-food-dish-category', [FoodDishCategoriesController::class,'editFoodDishCategory']);
     Route::post('delete-food-dish-category', [FoodDishCategoriesController::class,'deleteFoodDishCategory']);
+});
+
+Route::group(['prefix' => 'attention-tables'], function () {
+    Route::post('get-attention-tables', [AttentionTableController::class,'getAttentionTables']);
+    Route::post('insert-attention-table', [AttentionTableController::class,'insertAttentionTable']);
+    Route::post('edit-attention-table', [AttentionTableController::class,'editAttentionTable']);
+    Route::post('delete-attention-table', [AttentionTableController::class,'deleteAttentionTable']);
 });

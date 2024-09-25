@@ -36,6 +36,17 @@ class BranchesController extends Controller
         return response()->json($data);
     }
 
+    public function getBranchesForSelect(Request $request)
+    {
+        $params = [
+
+        ];
+
+        $data = DB::select('select id, name from branches where deleted_at is null', $params);
+
+        return response()->json($data);
+    }
+
     public function insertBranch(Request $request)
     {
 

@@ -12,6 +12,17 @@ class TableCategoriesController extends Controller
         return $data;
     }
 
+    public function getTableCategoriesForSelect(Request $request)
+    {
+        $params = [
+
+        ];
+
+        $data = DB::select('select id, name from table_categories where deleted_at is null', $params);
+
+        return response()->json($data);
+    }
+
     function insertTableCategory(Request $request){
         $params = [
             $request->name,
